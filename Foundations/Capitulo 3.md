@@ -255,9 +255,9 @@ La ubicacion del punto en estos ejes seria
 
 ⭕️ la velocidad angular del marco de rotacion.
 
-$\qquad$⚫️ $\dot{R}R^{-1} = \omega_s$
+$\qquad$⚫️ $\dot{R}R^{-1} = [\omega_s]$
 
-$\qquad$⚫️ $R^{-1}\dot{R} = \omega_b$
+$\qquad$⚫️ $R^{-1}\dot{R} = [\omega_b]$
 
 ⭕️ La velocidad angular de un eje.
 
@@ -265,5 +265,174 @@ $\qquad$ ⚫️ $\omega_c = R_{cd}\omega_d$
 
 ⭕️ velocidad lineal de ejes 
 $\qquad$⚫️ $\dot{r}_i = \omega_s \times r_i, \qquad i = 1,2,3$
+
+✍🏽 **Matriz antisimetrica:** $ [x] = -[x]^T$
+
+⭕️ $ x = \begin{bmatrix} x_1 & x_2 & x_3 \end{bmatrix}^T \in \R^3$ lo podemos definir como una matrix antisimetrica como:
+
+```math 
+
+     [x] = \begin{bmatrix}
+            0 & -x_3 & x_2 \\
+            x_3 & 0 & -x_1 \\
+            -x_2 & x_1 & 0
+            \end{bmatrix}
+
+```
+
 ### 3.2.3 Representacion de rotacion usando coordenadas exponenciales
 
+⭕️ Aparte de la matriz de rotacion, tenemos otra forma de representar la orientacion de un cuerpo rigido la cual es coordenadas exponenciales
+
+⭕️ Las coordenadas exponenciales para la rotacion estan construidas por 3 parametros, parametrizan una matriz de rotacion en terminos de un eje de rotacion representado como $\hat\omega$ y un angulo de rotacion sobre el eje $\theta$.
+
+⭕️ $\hat\omega\theta\in \R^3$ esta es la representacion de las coordenadas exponenciales.
+
+#### Ecuaciones Diferenciales
+
+⭕️ Si tenemos al siguiente funcion $\dot{x}(t) = ax(t); \space a \in \R, \space x(t) \in \R$, por ecuaciones diferenciales sabemos que su solucion es $x(t) = e^{at}x_0$ donde $x(0) = x_0$ es la condicion inicial.
+
+⭕️ Expansion numerica de $e^{at}$: 
+
+```math
+
+    e^{at} = 1 + at + \frac{(at)^2}{2!}+ \frac{(at)^3}{3!}+....
+
+```
+
+⭕️ Lo mismo aplica si $x(t) \in \R^n, A \in \R^{nxn}$ y la condicion inicial es $x(0) = x_0$
+
+```math
+    \dot{x}(t) = Ax(t) \newline
+    x(t) = e^{At}x_0 \newline
+    e^{At} = I + At + \frac{(At)^2}{2!}+ \frac{(At)^3}{3!}+....
+```
+
+⭕️ La matriz exponencial $e^At$ satisface además las siguientes propiedades:
+
+$\qquad$ ⚫️ $d(e^{At})/dt=Ae^{At} = e^{At}A$
+
+$\qquad$ ⚫️ Si $A=PDP^{-1}$ para $D \in \R^{nxn}$ y $P \in \R^{nxn}$ e invertible $e^{At}= Pe^{Dt}P^{-1}$
+
+$\qquad$ ⚫️ Si $AB =BA$ entonces $e^Ae^b = e^{A+B}$
+
+$\qquad$ ⚫️ $(e^A)^{-1} = e^{-A}$
+
+#### Coordenadas Exponenciales de Rotacion
+
+⭕️ Si tenemos el vector $\hat\omega\theta\in\R^3$, si $\theta$ es un escalar y $\hat\omega \in \R^3$ es un vector unitario, la matriz de rotacion exponencial de $[\hat\omega]\theta=[\hat\omega\theta]$ es 
+
+```math
+
+    \tag{1} Rot(\hat\omega, \theta) = I + \sin{\theta}[\hat\omega] + (1-\cos{\theta})[\hat\omega]^2 \in SO(3).
+
+```
+> ⚠️ **Nota:** La ecuacion 1 es la formula de rotacion de Rodrigues
+
+⭕️ $R' = e^{[\hat\omega]\theta}R$ Rotar R a $\theta$ grados sobre el eje $\hat\omega$ en el marco de referencia fijo
+
+
+⭕️ $R'' = Re^{[\hat\omega]\theta}$ Rotar R a $\theta$ grados sobre el eje $\hat\omega$ en el marco de referencia movil
+
+#### Matriz Logaritmica de rotacion
+
+⭕️ La matriz logaritmica es la inversa de la matriz exponencial la cual es la matriz de rotacion, $[\hat\omega\theta = [\hat\omega]\theta]$
+
+⭕️ Si tenemos $R \in SO(3)$ debemos encontrar el angulo $\theta \in [0, \pi]$ y el eje unitario de rotacion $\hat\omega \in \R^3, \|\hat\omega\|=1$, tal que $e^{[\hat\omega]\theta}=R$. El vector $\hat\omega\theta \in \R^3$ representa las coordenadas exponenciales de R y la matriz asimetrica $[\hat\omega]\theta\in so(3)$ es la matriz logaritmica de R.
+
+$\qquad$ ⚫️ Si $R = I$ entonces $\theta = 0$ y $\hat\omega$ es indefinido.
+
+$\qquad$ ⚫️ Si la traza de de $R = -1$ entonces $\theta = \pi$ y $\hat\omega$ es igual a cualquiera de los siguientes vectores.
+
+```math
+
+    \hat\omega = \frac{1}{\sqrt{2(1+r_{33})}}\begin{bmatrix}r_{13}\\r_{23}\\1+r_{33}\end{bmatrix};\newline\newline
+
+    
+```
+
+```math
+    \hat\omega = \frac{1}{\sqrt{2(1+r_{22})}}\begin{bmatrix}r_{12}\\1+r_{22}\\r_{33}\end{bmatrix};\newline\newline
+```
+
+```math
+
+    \hat\omega = \frac{1}{\sqrt{2(1+r_{11})}}\begin{bmatrix}1+r_{11}\\r_{21}\\1+r_{31}\end{bmatrix};\newline
+```
+
+>💥 **Importante:** $\sqrt{2(1+r_{nn})}$ debe ser mayor a 0
+
+$\qquad$ ⚫️ De otra forma 
+
+```math
+
+    \theta = \arccos({\frac{1}{2}(tr R - 1)}) \in [0, \pi);
+
+```
+
+```math
+
+    [\hat\omega] = \frac{1}{2\sin{\theta}}(R-R^T)
+
+```
+
+⭕️ Toda matriz $R \in SO(3)$ satisface uno de los 3 casos anteriores, para toda R existe una matrix logaritmica y por ende existe una representacion en coordenadas exponenciales.
+
+⭕️ Si $r = \hat\omega\theta$ entonces $\hat\omega = {r}/{\|r\|}$ y $\theta = \|r\|$
+
+
+#### Funciones en Python
+
+```python
+
+    import modern_robotics as mr 
+
+    mr.RotInv(R) 
+    """ 
+    Inverso de la matriz de rotacion R
+    
+    :paramtros: R : Matriz de Rotacion
+    :retorna: La inversa de la matriz R 
+    """
+
+    mr.VecToso3(omg)
+    """
+    Transforma un vector a una matriz 3x3 asimetrica
+
+    :parametros: omg : Vector de dimension 3
+    :retorna: Matrix 3x3 asimetrica
+    """
+
+    mr.so3ToVec(so3mat)
+    """
+    Convierte una matrix asimetrica 3x3 en un vector de 3 dimensiones
+
+    :parametros: so3mat : Matriz asimetrica 3x3
+    :retorna: vector de dimension 3
+    """
+
+    mr.AxisAng3(expc3)
+    """
+    Transforma un vector de coordenadas exponenciales en la forma eje-angulo
+
+    :parametros: expc3 : Vector de coordenadas exponenciales de rotacion
+    :retorna: omg : eje de rotacion unitario
+            : theta : angulo de rotacion
+    """
+
+    mr.MatrixExp3(so3mat)
+    """
+    Calcula la matriz de Rotacion de la matriz logaritmica so3mat
+    
+    :parametros: so3mat : Matriz 3x3 asimetrica
+    :retorna: matriz de Rotacion
+    """
+
+    mr.MatrixLog3(R) 
+    """
+    Calcula la matriz logaritmica de la matriz de rotacion R 
+
+    :parametros: R : MAtriz 3x3 de Rotacion
+    :retorna: Matriz 3x3 logaritmica
+    """
+```
