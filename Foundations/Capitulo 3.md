@@ -436,3 +436,6 @@ $\qquad$ ⚫️ De otra forma
     :retorna: Matriz 3x3 logaritmica
     """
 ```
+
+## 3.3 Movimientos y Giros de un Cuerpo Rigido
+
