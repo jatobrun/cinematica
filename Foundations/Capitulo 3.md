@@ -506,6 +506,16 @@ Tx = T \begin{bmatrix}
 
 ⭕️ Si tenemos un grupo de puntos $\{x, y, z\}$ donde $\{Tx, Ty, Tz\}$ representa el desplazamiento respetando distacias y orientacion.
 
+⭕️ Inversa de una matriz T se expresa de la siguiente forma.
+
+```math
+
+    T^{-1} = \begin{bmatrix}
+                R^T & -R^Tp \\
+                0 & 1
+             \end{bmatrix}
+
+```
 #### Usos
 
 1️⃣ Representar la configuracion (posicion y orientacion) de un cuerpo rigido.
