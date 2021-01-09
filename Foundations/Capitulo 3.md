@@ -439,3 +439,85 @@ $\qquad$ ⚫️ De otra forma
 
 ## 3.3 Movimientos y Giros de un Cuerpo Rigido
 
+⭕️ La matriz de transformacion homogenea $T$ es analogo a la matriz de rotacion $R$ 
+
+⭕️ el screw axis $S$ es analogo a el eje de rotacion $\hat\omega$
+
+⭕️ $S\theta \in \R^6$ son las coordenadas exponenciales del movimiento de los cuerpos rigididos similar a $\hat\omega\theta \in \R^3$ para las rotaciones.
+
+### 3.3.1 Matrices de Transformación Homogenea
+
+⭕️ estas matrices representaran la orientacion y posicion de los cuerpos rigidos.
+
+⭕️ $SE(3)$ es el grupos especial euclidenano o tambien conociudo como el grupo de las matrices de transformacion homogeneas en $R^3$ es el grupo de matrices $4x4$
+
+```math
+
+    T = \begin{bmatrix} R & p \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} r_11 & r_12 & r_13 & p_1 \\ r_21 & r_22 & r_23 & p_2 \\
+    r_31 & r_32 & r_33 & p_3 \\ 0 & 0 & 0 & 1 \end{bmatrix};
+
+```
+Donde $ R \in SO(3), p \in \R^3$ es un vector columna
+
+⭕️ Lo que ocurre en que estamos encapsulando el vector p y la matriz R en una nueva matrix 4x4.
+
+⭕️ el vector $[x^T 1]^T$ es la representacion de x en coordenadas homogeneas 
+
+#### Propiedades
+
+⚫️ Asociativa
+
+⚫️ Cerradura 
+
+⚫️ Inversa
+> ⚠️ **Nota:** NO es conmutativa
+
+⚫️
+
+```math
+
+Tx = T \begin{bmatrix}
+        x \\ 
+        1 
+        \end{bmatrix}
+    = \begin{bmatrix}
+        R & p \\ 
+        0 & 1
+        \end{bmatrix}
+      \begin{bmatrix}
+        x\\
+        1
+        \end{bmatrix} 
+    = \begin{bmatrix} 
+        Rx + p \\ 
+        1 
+        \end{bmatrix}
+```
+
+```math
+
+    (a) \space \|Tx - Ty \| = \|x-y\|; \newline
+     \|x\| = \sqrt{x^Tx} \newline \newline
+    (b) \space <Tx - Tz, Ty - Tz> = <x - z, y - z>; \newline
+     <x, y> = x^Ty
+
+```
+⭕️ la propiedad (a) preserva distancias mientras que la (b) preserva angulos.
+
+⭕️ Si tenemos un grupo de puntos $\{x, y, z\}$ donde $\{Tx, Ty, Tz\}$ representa el desplazamiento respetando distacias y orientacion.
+
+#### Usos
+
+1️⃣ Representar la configuracion (posicion y orientacion) de un cuerpo rigido.
+
+2️⃣ Cambiar el marco de referencia.
+
+3️⃣ Desplazar un cuerpo un vector o eje.
+
+⭕️ $T_{ab}T_{bc} = T_{a\cancel{b}}T_{\cancel{b}c} = T_{ac}$
+
+⭕️$T_{ab}\upsilon_{b} = T_{a\cancel{b}}\upsilon_{\cancel{b}} = \upsilon_{a}$, donde $\upsilon_a$ es el vector v expresado en {a}.
+
+⭕️$T_{sb'} = TT_{sb} = Trans(p)Rot(\hat\omega, \theta)T_{sb}$
+
+⭕️$T_{sb^{''}} = T_{sb}T = T_{sb}Trans(p)Rot(\hat\omega, \theta)$
