@@ -518,6 +518,9 @@ Tx = T \begin{bmatrix}
 
 ⭕️$T_{ab}\upsilon_{b} = T_{a\cancel{b}}\upsilon_{\cancel{b}} = \upsilon_{a}$, donde $\upsilon_a$ es el vector v expresado en {a}.
 
-⭕️$T_{sb'} = TT_{sb} = Trans(p)Rot(\hat\omega, \theta)T_{sb}$
+⭕️$T_{sb'} = TT_{sb} = Trans(p)Rot(\hat\omega, \theta)T_{sb}$ eje de referencia
 
-⭕️$T_{sb^{''}} = T_{sb}T = T_{sb}Trans(p)Rot(\hat\omega, \theta)$
+⭕️$T_{sb^{''}} = T_{sb}T = T_{sb}Trans(p)Rot(\hat\omega, \theta)$ eje del cuerpo
+
+### 3.3.2 Twist
+
