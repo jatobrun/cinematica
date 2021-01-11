@@ -534,3 +534,107 @@ Tx = T \begin{bmatrix}
 
 ### 3.3.2 Twist
 
+⭕️ La matriz T nos ayuda a representar la configuracion de un cuerpo en el espacio ahora necesitamos encontrar una forma de representar la velocidades de un cuerpo en el espacio.
+
+
+⭕️ Spatial twist o spatial velocity in the space frame es una matrix 4x4 o un vector de 6 dimensiones.
+
+```math
+
+    V_s = \begin{bmatrix} 
+            \omega_s \\
+            v_s
+        \end{bmatrix} \in \R^6;
+    
+```
+```math
+    [V_s] = \begin{bmatrix} 
+            [\omega_s] & v_s \\
+            0 & 0
+        \end{bmatrix} = \dot{T}T^{-1} \in se(3),
+
+```
+
+⭕️ Body twist es una matriz 4x4 o un vector de 6 dimensiones
+
+```math
+
+    V_b = \begin{bmatrix} 
+            \omega_b \\
+            v_b
+        \end{bmatrix} \in \R^6;
+    
+
+```
+
+```math
+[V_b] = \begin{bmatrix} 
+            [\omega_b] & v_sb\\
+            0 & 0
+        \end{bmatrix} = T^{-1} \dot{T}\in se(3),
+```
+⭕️ Si tenemos una matriz T = (R, p) $\in SE(3$ podemos obtener su representacion adjunta la cual es una matriz 6x6 con ella podemos cambiar el twist de referencia.
+
+```math
+
+    [Ad_T] = \begin{bmatrix}
+            R & 0 \\
+            [p]R & R
+            \end{bmatrix}\in \R^{6x6} \newline
+```
+
+```math
+   V_s = [Ad_{T_{sb}}]V_b \newline
+    V_b = [Ad_{T_{bs}}]V_s
+
+```
+
+⭕️ El twist puede ser intepretado como un screw axis S y una velocidad $\dot{\theta}$ sobre el screw axis.
+
+⭕️ Una representacion de screw axis puede ser {q, $\hat{s}$, h}, donde q es $\in \R^3$ es cualquier punto en el eje, $\hat{s}$ es un vector unitario el cual nos da la direccion del eje y h es el screw pitch es el ratio de velocidad angular y velocidad lineal que tiene el cuerpo sobre el screw axis.
+
+```math
+
+    V = \begin{bmatrix}
+            \omega\\
+            \upsilon
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            \hat{s}\dot{\theta} \\
+            -\hat{s}\dot{\theta} \times q + h\hat{s}\dot{\theta}
+        \end{bmatrix}
+```
+⭕️ Tenga en cuenta que la velocidad lineal v es la suma de dos términos: uno debido a la traslación a lo largo del eje del tornillo, $h\hat{s}\dot{\theta}$, y el otro debido al movimiento lineal en el origen inducido por la rotación sobre el eje, $-\hat{s}\dot{\theta} \times q $.
+
+⭕️ Si w $\not = 0$ existe un screw axis representado por {q, $\hat{s}$, h}, donde:
+
+```math
+
+    \hat{s} = \omega/\|\omega\|, \newline
+    \dot\theta = \|\omega\|, \newline
+    h = \hat\omega^T\upsilon/\dot\theta
+
+```
+
+⭕️ Si w = 0, h es infinito, en ese caso ocurre lo siguiente:
+
+```math
+
+    \hat{s} = \upsilon/\|\upsilon\|
+    \dot{\theta} = \|\upsilon\|
+
+```
+
+
+⭕️ La forma anterior que vimos no es tan usado debido a que podemos tener el h infinito y q puede ser cualquier punto en el eje, por ende definiremos el screw axis S como un twist normalizado por $\omega$
+
+(a) si w$\not =$ 0 entonces $S = V/\|\omega\|$ por ende $\dot\theta = \|\omega\|$
+
+(b) si w = 0 entonces S = V y $\dot\theta = \|\upsilon\|$
+
+### 3.3.3 Representacion de movimientos de un cuerpo rigido atraves de coordenadas exponenciales
+
+
+
+### 3.3.4 Wrenches
+
